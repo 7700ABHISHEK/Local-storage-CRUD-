@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body class="d-flex justify-content-center align-items-center vh-100 bg-light">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="shadow-lg card p-4">
+                    <h1 class="text-center my-4">CRUD operation in form</h1>
+                    <form action="" autocomplete="on">
+                        <div>
+                            <label for="name" class="h4 mt-4 mb-2">Name :</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name">
+                        </div>
+                        <div>
+                            <label for="email" class="h4 mt-4 mb-2">Email :</label>
+                            <input type="email" name="email" id="email" class="form-control"
+                                placeholder="Enter your Email id">
+                        </div>
+                        <div>
+                            <label for="course" class="h4 mt-4 mb-2">Course :</label>
+                            <select name="course" id="course" class="form-select">
+                                <option value="0">Please select your preferance</option>
+                                <option value="1">Full Stack Web Dev</option>
+                                <option value="2">UI/UX design</option>
+                                <option value="3">AI/ML</option>
+                                <option value="4">Cyber Security</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="gender" class="h4 mt-4 mb-2 form-label">Gender :</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" name="gender" value="male" id="male" class="form-check-input">
+                                <label for="male" class="h6 m-0">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" value="female" name="gender" id="female" class="form-check-input">
+                                <label for="female" class="h6 m-0">Female</label>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4 d-flex">
+                            <button type="button" id="submitBtn" class="btn btn-success mx-4 w-50">Submit</button>
+                            <button type="button" class="btn btn-primary w-50" onclick="window.location.href = `studentDetails.html` ">Details</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

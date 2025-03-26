@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+    <h1 class="my-5 text-center">Students Details</h1>
+
+    <div class="container">
+        <table class="table table-dark table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Course</th>
+                    <th>Gender</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="studentBody"></tbody>
+        </table>
+
+        <div>
+            <button class="btn btn-primary" onclick="window.location.href = `./index.html` ">Back</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        let studentBody = document.getElementById("studentBody");
+        let studentArr = JSON.parse(localStorage.getItem("students")) || [];
+
+        if(studentArr.length == 0){
+            swal.fire("No, Student found")
+        }
+
+        function display(){
+            studentBody.innerHTML = "";
+            studentArr.forEach((student, idx) => {
+            
+
+            studentBody.innerHTML +=
+                `
+                <tr class="table-secondary">
+                    <td>${student.name1}</td>
+                    <td>${student.email}</td>
+                    <td>${student.course == 1 ? "Full Stack Web Development"
+                    : student.course == 2 ? "UI/UX Design"
+                        : student.course == 3 ? "AI/ML"
+                            : "Cyber Security"
+                    }
+                    </td>
+                    <td>${student.gender}</td>
+                    <td class="d-flex gap-2">
+                        <div>
+                            <button class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn btn-danger"><i class="fa-solid fa-trash" onclick="deleteData(${idx})"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            `
+        });
+        }
+
+        display();
+
+        function deleteData(idx){
+            studentArr.splice(idx, 1);
+            localStorage.setItem("students", JSON.stringify(studentArr));
+            display();
+        }
+
+    </script>
+
+</body>
+
+</html>
