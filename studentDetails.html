@@ -29,56 +29,12 @@
         </table>
 
         <div>
-            <button class="btn btn-primary" onclick="window.location.href = `./index.html` ">Back</button>
+            <button class="btn btn-primary" onclick="window.location.href = `./index.html`">Back</button>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        let studentBody = document.getElementById("studentBody");
-        let studentArr = JSON.parse(localStorage.getItem("students")) || [];
-
-        if(studentArr.length == 0){
-            swal.fire("No, Student found")
-        }
-
-        function display(){
-            studentBody.innerHTML = "";
-            studentArr.forEach((student, idx) => {
-            
-
-            studentBody.innerHTML +=
-                `
-                <tr class="table-secondary">
-                    <td>${student.name1}</td>
-                    <td>${student.email}</td>
-                    <td>${student.course == 1 ? "Full Stack Web Development"
-                    : student.course == 2 ? "UI/UX Design"
-                        : student.course == 3 ? "AI/ML"
-                            : "Cyber Security"
-                    }
-                    </td>
-                    <td>${student.gender}</td>
-                    <td class="d-flex gap-2">
-                        <div>
-                            <button class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="btn btn-danger"><i class="fa-solid fa-trash" onclick="deleteData(${idx})"></i></button>
-                        </div>
-                    </td>
-                </tr>
-            `
-        });
-        }
-
-        display();
-
-        function deleteData(idx){
-            studentArr.splice(idx, 1);
-            localStorage.setItem("students", JSON.stringify(studentArr));
-            display();
-        }
-
-    </script>
+    <script src="./assets/js/studentDetails.js"></script>
 
 </body>
 
