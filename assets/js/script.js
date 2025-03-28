@@ -1,12 +1,14 @@
 let name1 = document.getElementById("name");
 let email = document.getElementById("email");
 let course = document.getElementById("course");
+let studentArr = JSON.parse(localStorage.getItem("students")) || [];
+
 
 document.addEventListener("DOMContentLoaded", () => {
     let index = JSON.parse(localStorage.getItem("editIndex"));
     let studentDetail = JSON.parse(localStorage.getItem("editStudent"));
 
-    if (index !== null) {
+    if (index !== null && studentDetail) {
         name1.value = `${studentDetail.name1}`;
         email.value = `${studentDetail.email}`;
         course.value = `${studentDetail.course}`;
@@ -14,19 +16,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let submitBtn = document.getElementById("submitBtn")
         submitBtn.innerHTML = "Update";
-        submitBtn.addEventListener("click", function () {
-            studentArr.splice(index, 1, studentObj)
-        })
-
-        console.log(studentArr);
-        
+        // submitBtn.addEventListener("click", function () {
+        //     studentArr.splice(index, 1, studentObj)
+        // })
     }
 
 
 })
 
 document.getElementById("submitBtn").addEventListener("click", () => {
-    let gender = document.querySelector(`input[type="radio"]:checked`);
+    let gender = document.querySelector(`input[type="radio"]:checked`);    
 
     if (name1.value == "" || email.value == "" || course.value == "0" || gender == null) {
         Swal.fire({
@@ -45,11 +44,23 @@ document.getElementById("submitBtn").addEventListener("click", () => {
         gender: gender.value,
     }
 
-    let studentArr = JSON.parse(localStorage.getItem("students")) || [];
+    let index = JSON.parse(localStorage.getItem("editIndex"));
+    let studentDetail = JSON.parse(localStorage.getItem("editStudent"));
 
-    studentArr.push(studentObj);
+    if(index !== null && studentDetail){
+        studentArr[index] = studentObj;
+        localStorage.setItem("students", JSON.stringify(studentArr))
+        window.location = "./studentDetails.html"
 
-    localStorage.setItem("students", JSON.stringify(studentArr))
+    } else{
+    
+        let studentArr = JSON.parse(localStorage.getItem("students")) || [];
+    
+        studentArr.push(studentObj);
+    
+        localStorage.setItem("students", JSON.stringify(studentArr))
+    
+        window.location = "./studentDetails.html";
+    }
 
-    window.location = "./studentDetails.html";
 })
